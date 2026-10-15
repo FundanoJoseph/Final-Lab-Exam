@@ -1,0 +1,11 @@
+# Runtime artifacts
+logs/*.log
+database/*.sqlite
+
+# Environment overrides
+.env
+config/config.local.php
+
+# OS noise
+.DS_Store
+Thumbs.db

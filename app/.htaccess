@@ -1,0 +1,2 @@
+# Deny direct web access to the app source (only index.php should run it).
+Require all denied

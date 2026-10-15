@@ -1,0 +1,27 @@
+# ---------------------------------------------------------------
+#  Student Information System – Apache configuration
+#  (Works on InfinityFree and any shared Apache host.)
+# ---------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Allow the preview/proxy environment to pass the real scheme.
+    RewriteCond %{HTTP:X-Forwarded-Proto} =https
+    RewriteRule .* - [E=HTTPS:on]
+
+    # Serve existing files and folders directly (assets, etc.).
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Everything else goes through the front controller.
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Do not list directory contents.
+Options -Indexes
+
+# Prevent access to sensitive file types.
+<FilesMatch "\.(log|sql|sqlite|md)$">
+    Require all denied
+</FilesMatch>
